@@ -1,10 +1,10 @@
 import RPi.GPIO as GPIO
 import time
-from datetime import *
+import datetime
 
 now = datetime.datetime.now()
 if now.hour < 10:
-    	ora = "0" + str(now.hour)
+		ora = "0" + str(now.hour)
 elif now.hour > 10:
 	ora = str(now.hour)
 
@@ -41,35 +41,35 @@ GPIO.output(kijelzo3, 0)
 GPIO.output(kijelzo4, 0)
 
 def kijelzo1ena():
-    	GPIO.output(kijelzo1, 0)
+	GPIO.output(kijelzo1, 0)
 	return;
 
 def kijelzo1tilt():
-    	GPIO.output(kijelzo1, 1)
+	GPIO.output(kijelzo1, 1)
 	return;
 
 def kijelzo2ena():
-    	GPIO.output(kijelzo2, 0)
+	GPIO.output(kijelzo2, 0)
 	return;
 
 def kijelzo2tilt():
-    	GPIO.output(kijelzo2, 1)
+	GPIO.output(kijelzo2, 1)
 	return;
 
 def kijelzo3ena():
-    	GPIO.output(kijelzo3, 0)
+	GPIO.output(kijelzo3, 0)
 	return;
 
 def kijelzo3tilt():
-    	GPIO.output(kijelzo3, 1)
+	GPIO.output(kijelzo3, 1)
 	return;
 	
 def kijelzo4ena():
-    	GPIO.output(kijelzo4, 0)
+	GPIO.output(kijelzo4, 0)
 	return;
 
 def kijelzo4tilt():
-    	GPIO.output(kijelzo4, 1)
+	GPIO.output(kijelzo4, 1)
 	return;
 
 def nulla(): 
@@ -182,8 +182,8 @@ def kilenc():
 	time.sleep(sleep)
 	return;
 
-def time1(ora):
-    if ora[0] == "0": 
+def time1():
+	if ora[0] == "0": 
 		nulla()
 	elif ora[0] == "1":
 		egy()
@@ -204,8 +204,8 @@ def time1(ora):
 	else:
 		kilenc()
 
-def time2(ora):
-    if ora[1] == "0": 
+def time2():
+	if ora[1] == "0": 
 		nulla()
 	elif ora[1] == "1":
 		egy()
@@ -226,8 +226,8 @@ def time2(ora):
 	else:
 		kilenc()
 
-def time3(perc):
-    if perc[0] == "0": 
+def time3():
+	if perc[0] == "0": 
 		nulla()
 	elif perc[0] == "1":
 		egy()
@@ -248,8 +248,8 @@ def time3(perc):
 	else:
 		kilenc()
 
-def time4(perc):
-    if perc[1] == "0": 
+def time4():
+	if perc[1] == "0": 
 		nulla()
 	elif perc[1] == "1":
 		egy()
