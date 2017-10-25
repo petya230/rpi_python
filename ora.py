@@ -182,6 +182,18 @@ def kilenc():
 	time.sleep(sleep)
 	return;
 
+def cebetu(): 
+# 9
+	print("ce")
+	GPIO.output(14, 0)
+	GPIO.output(15, 0)
+	GPIO.output(17, 1)
+	GPIO.output(18, 1)
+	GPIO.output(22, 0)
+	time.sleep(sleep)
+	return;
+
+
 def time1():
 	if ora[0] == "0": 
 		nulla()
