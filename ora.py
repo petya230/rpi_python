@@ -291,10 +291,11 @@ kijelzo1tilt()
 kijelzo2tilt()
 kijelzo3tilt()
 kijelzo4tilt()
-print "Ennyi az ido: %s:%s" % ( str(now.hour), str(now.minute))
+print "Most ennyi az ido: %s:%s" % ( str(now.hour), str(now.minute))
 
 while True:
 	for e3 in range(0, 1, 1): #elso
+#			print "Most ennyi az ido: %s:%s" % ( str(now.hour), str(now.minute))
 			kijelzo1ena()
 			kijelzo2tilt()
 			kijelzo3tilt()
@@ -322,3 +323,4 @@ while True:
 						kijelzo4ena()
 						time4()
 						kijelzo4tilt()
+	time.sleep(1)
