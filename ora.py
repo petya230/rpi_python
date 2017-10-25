@@ -75,7 +75,7 @@ def kijelzo4tilt():
 
 def nulla(): 
 # 0
-	print("nulla")
+#	print("nulla")
 	GPIO.output(14, 0)
 	GPIO.output(15, 0)
 	GPIO.output(17, 0)
@@ -86,7 +86,7 @@ def nulla():
 
 def egy(): 
 # 1
-	print("egy")
+#	print("egy")
 	GPIO.output(14, 1)
 	GPIO.output(15, 0)
 	GPIO.output(17, 0)
@@ -97,7 +97,7 @@ def egy():
 
 def ketto(): 
 # 2
-	print("ketto")
+#	print("ketto")
 	GPIO.output(14, 0)
 	GPIO.output(15, 1)
 	GPIO.output(17, 0)
@@ -108,7 +108,7 @@ def ketto():
 	
 def harom(): 
 # 3
-	print("harom")
+#	print("harom")
 	GPIO.output(14, 1)
 	GPIO.output(15, 1)
 	GPIO.output(17, 0)
@@ -119,7 +119,7 @@ def harom():
 
 def negy(): 
 # 4
-	print("negy")
+#	print("negy")
 	GPIO.output(14, 0)
 	GPIO.output(15, 0)
 	GPIO.output(17, 1)
@@ -130,7 +130,7 @@ def negy():
 	
 def ot(): 
 # 5
-	print("ot")
+#	print("ot")
 	GPIO.output(14, 1)
 	GPIO.output(15, 0)
 	GPIO.output(17, 1)
@@ -141,7 +141,7 @@ def ot():
 	
 def hat(): 
 # 6
-	print("hat")
+#	print("hat")
 	GPIO.output(14, 0)
 	GPIO.output(15, 1)
 	GPIO.output(17, 1)
@@ -152,7 +152,7 @@ def hat():
 	
 def het(): 
 # 7
-	print("het")
+#	print("het")
 	GPIO.output(14, 1)
 	GPIO.output(15, 1)
 	GPIO.output(17, 1)
@@ -163,7 +163,7 @@ def het():
 	
 def nyolc(): 
 # 8
-	print("nyolc")
+#	print("nyolc")
 	GPIO.output(14, 0)
 	GPIO.output(15, 0)
 	GPIO.output(17, 0)
@@ -174,7 +174,7 @@ def nyolc():
 	
 def kilenc(): 
 # 9
-	print("kilenc")
+#	print("kilenc")
 	GPIO.output(14, 1)
 	GPIO.output(15, 0)
 	GPIO.output(17, 0)
@@ -185,7 +185,7 @@ def kilenc():
 
 def cebetu(): 
 # 9
-	print("ce")
+#	print("ce")
 	GPIO.output(14, 0)
 	GPIO.output(15, 0)
 	GPIO.output(17, 1)
@@ -292,31 +292,33 @@ kijelzo2tilt()
 kijelzo3tilt()
 kijelzo4tilt()
 
-for e3 in range(0, 1, 1): #elso
-		kijelzo1ena()
-		kijelzo2tilt()
-		kijelzo3tilt()
-		kijelzo4tilt()
-		time1()
-		kijelzo1tilt()
-		for m in range(0, 1, 1): #masodik
-			kijelzo1tilt()
-			kijelzo2ena()
+
+while True:
+	for e3 in range(0, 1, 1): #elso
+			kijelzo1ena()
+			kijelzo2tilt()
 			kijelzo3tilt()
 			kijelzo4tilt()
-			time2()
-			kijelzo2tilt()
-			for h in range(0, 1, 1): #harmadik
+			time1()
+			kijelzo1tilt()
+			for m in range(0, 1, 1): #masodik
 				kijelzo1tilt()
-				kijelzo2tilt()
-				kijelzo3ena()
-				kijelzo4tilt()
-				time3()
+				kijelzo2ena()
 				kijelzo3tilt()
-				for n in range(0, 1, 1): #negyedik
+				kijelzo4tilt()
+				time2()
+				kijelzo2tilt()
+				for h in range(0, 1, 1): #harmadik
 					kijelzo1tilt()
 					kijelzo2tilt()
-					kijelzo3tilt()
-					kijelzo4ena()
-					time4()
+					kijelzo3ena()
 					kijelzo4tilt()
+					time3()
+					kijelzo3tilt()
+					for n in range(0, 1, 1): #negyedik
+						kijelzo1tilt()
+						kijelzo2tilt()
+						kijelzo3tilt()
+						kijelzo4ena()
+						time4()
+						kijelzo4tilt()
