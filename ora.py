@@ -3,6 +3,7 @@ import time
 import datetime
 
 now = datetime.datetime.now()
+
 if now.hour < 10:
 		ora = "0" + str(now.hour)
 elif now.hour > 10:
@@ -282,38 +283,37 @@ def time4():
 	else:
 		kilenc()
 
-nulla()
-szam = [nulla,egy,ketto,harom,negy,ot,hat,het,nyolc,kilenc]
-e = szam[0]
-e()
+
+#nulla()
+#print " "
 
 kijelzo1tilt()
 kijelzo2tilt()
 kijelzo3tilt()
 kijelzo4tilt()
 
-for e3 in range(0, 10, 1): #elso
+for e3 in range(0, 1, 1): #elso
 		kijelzo1ena()
 		kijelzo2tilt()
 		kijelzo3tilt()
 		kijelzo4tilt()
 		time1()
 		kijelzo1tilt()
-		for m in range(0, 10, 1): #masodik
+		for m in range(0, 1, 1): #masodik
 			kijelzo1tilt()
 			kijelzo2ena()
 			kijelzo3tilt()
 			kijelzo4tilt()
 			time2()
 			kijelzo2tilt()
-			for h in range(0, 10, 1): #harmadik
+			for h in range(0, 1, 1): #harmadik
 				kijelzo1tilt()
 				kijelzo2tilt()
 				kijelzo3ena()
 				kijelzo4tilt()
 				time3()
 				kijelzo3tilt()
-				for n in range(0, 10, 1): #negyedik
+				for n in range(0, 1, 1): #negyedik
 					kijelzo1tilt()
 					kijelzo2tilt()
 					kijelzo3tilt()
