@@ -291,7 +291,7 @@ kijelzo1tilt()
 kijelzo2tilt()
 kijelzo3tilt()
 kijelzo4tilt()
-
+print "Ennyi az ido: %s:%s" % ( str(now.hour), str(now.minute))
 
 while True:
 	for e3 in range(0, 1, 1): #elso
