@@ -8,16 +8,16 @@ cel = (int(float(temp)) / 1000.0)
 import datetime
 
 now = datetime.datetime.now()
-
+asd = str(now.hour) + " : " + str(now.minute)
 import Tkinter
 import tkMessageBox
 
 top = Tkinter.Tk()
 def cpu():
-   tkMessageBox.showinfo("Cpu hőfok: % C*", cel )
+   tkMessageBox.showinfo("Fok", cel )
 
 def ido():
-   tkMessageBox.showinfo("Idő: %s:%s" % (now.hour, now.minute))
+   tkMessageBox.showinfo("Idő", asd)
 
 gomb1 = Tkinter.Button(top, text = "CPU hőfok", command = cpu)
 gomb1.pack()
