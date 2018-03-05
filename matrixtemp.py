@@ -89,19 +89,18 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-beker = input("Melyiket valsztod? ")
 
-if beker == 1:
+beker = input("Melyiket valasztod? ")
+if beker == 0:
+        exit()
+elif beker == 1:
 	hofok(args.cascaded, args.block_orientation, args.rotate)
 elif beker == 2:
 	cpu(args.cascaded, args.block_orientation, args.rotate)
 elif beker == 3:
 	clock(args.cascaded, args.block_orientation, args.rotate)
-elif beker == 0:
-	exit()
 print("nope")
 
 #hofok(args.cascaded, args.block_orientation, args.rotate)
 #cpu(args.cascaded, args.block_orientation, args.rotate)
 #clock(args.cascaded, args.block_orientation, args.rotate)
-
