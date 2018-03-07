@@ -17,18 +17,23 @@ from luma.core.virtual import viewport
 from luma.core.legacy import text, show_message
 from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_FONT, LCD_FONT
 
+#choose
+file=open("which.txt", "r")
+which=file.read()
+file.close()
+#choose
+
 #clock
 now = datetime.datetime.now()
-
-if now.hour < 10:
-		ora = "0" + str(now.hour)
-elif now.hour > 10:
-	ora = str(now.hour)
-
+if now.hour + 1 < 10:
+	ora = "0" + str(now.hour+1)
+elif now.hour + 1 > 10:
+	ora = str(now.hour+1)
 if now.minute < 10:
 	perc = "0" + str(now.minute)
 elif now.minute > 10:
-	perc = str(now.minute)
+		perc = str(now.minute)
+
 #clock
 
 #TEMP
@@ -53,6 +58,9 @@ cel = (int(float(cputemp)) / 1000.0)
 def hofok(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
+    if ((now.hour + 1) < 5 or (now.hour + 1) > 19):
+    	device.contrast(1)
+	print("Low fényerő")
     print("Hofok")
     msg = "Hofok: " + str(temp_C) + " C"
     print(msg)
@@ -63,6 +71,9 @@ def hofok(n, block_orientation, rotate):
 def cpu(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
+    if ((now.hour + 1) < 5 or  (now.hour + 1) > 19):
+        device.contrast(1)
+        print("Low fényerő")
     print("CPU Hofok")
     msg = "CPU hofok: " + str(cel) + " C"
     print(msg)
@@ -72,8 +83,11 @@ def cpu(n, block_orientation, rotate):
 def clock(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
+    if ((now.hour + 1 ) < 5 or (now.hour + 1) > 19):
+        device.contrast(1)
+        print("Low fényerő")
     print("Ora")
-    msg = ora + " : " + perc
+    msg = ora + " : " + perc + "     " + ora + " : " + perc
     print(msg)
     show_message(device, msg, fill="white", font=proportional(CP437_FONT))
     time.sleep(1)
@@ -89,18 +103,23 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-
-beker = input("Melyiket valasztod? ")
-if beker == 0:
-        exit()
-elif beker == 1:
+amig=0
+#beker = input("Melyiket valasztod? ")
+if int(which) == 0:
+	exit()
+elif int(which) == 1:
 	hofok(args.cascaded, args.block_orientation, args.rotate)
-elif beker == 2:
 	cpu(args.cascaded, args.block_orientation, args.rotate)
-elif beker == 3:
 	clock(args.cascaded, args.block_orientation, args.rotate)
-print("nope")
+elif int(which) == 2:
+	hofok(args.cascaded, args.block_orientation, args.rotate)
+elif int(which) == 3:
+	cpu(args.cascaded, args.block_orientation, args.rotate)
+elif int(which) == 4:
+	clock(args.cascaded, args.block_orientation, args.rotate)
 
+print("nope")
+print(which)
 #hofok(args.cascaded, args.block_orientation, args.rotate)
 #cpu(args.cascaded, args.block_orientation, args.rotate)
 #clock(args.cascaded, args.block_orientation, args.rotate)
