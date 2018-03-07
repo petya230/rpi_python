@@ -23,6 +23,16 @@ which=file.read()
 file.close()
 #choose
 
+now = datetime.datetime.now()
+
+#mygirl
+girl = datetime.datetime(2017, 4, 18)
+mygirl = now - girl
+print(mygirl)
+mygirl=str(mygirl).split(" ")
+print(mygirl[0])
+#mygirl
+
 #clock
 now = datetime.datetime.now()
 if now.hour + 1 < 10:
@@ -92,6 +102,22 @@ def clock(n, block_orientation, rotate):
     show_message(device, msg, fill="white", font=proportional(CP437_FONT))
     time.sleep(1)
 
+def Girl(n, block_orientation, rotate):
+    serial = spi(port=0, device=0, gpio=noop())
+    device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
+    print("Girl")
+    if ((now.hour + 1 ) < 5 or (now.hour + 1) > 19):
+        device.contrast(1)
+        print("Low fényerő")
+    sziv = chr(3)
+    honap = int(mygirl[0]) / 30
+    het = (int(mygirl[0]) - (honap * 30)) / 7
+    nap = int(mygirl[0]) - (het * 7) - (honap * 30) 
+    msg = mygirl[0] + " napja vagyunk egyutt!!" + sziv + sziv + sziv + " Azaz " +str(honap) + " honapja, " + str(het) + " hete és " + str(nap) + " napja"
+    print(msg)
+    show_message(device, msg, fill="white", font=proportional(CP437_FONT))
+    time.sleep(1)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='matrix_demo arguments',
@@ -117,6 +143,8 @@ elif int(which) == 3:
 	cpu(args.cascaded, args.block_orientation, args.rotate)
 elif int(which) == 4:
 	clock(args.cascaded, args.block_orientation, args.rotate)
+elif int(which) == 69:
+    Girl(args.cascaded, args.block_orientation, args.rotate)
 
 print("nope")
 print(which)
