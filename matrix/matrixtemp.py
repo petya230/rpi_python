@@ -19,8 +19,53 @@ from luma.core.render import canvas
 from luma.core.virtual import viewport
 from luma.core.legacy import text, show_message
 from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_FONT, LCD_FONT
+
+#nameday
+now = datetime.datetime.now()
+if now.month < 10:
+    month= '0' + str(now.month)
+if now.month >= 10:
+    month = str(now.month)
+day = str(now.day)
+
+def get_nameday(month, day):
+    url = "http://xsak.hu/nevnap/json.php?honap=%s&nap=%s" % (month,day)
+    print(url)
+    with urllib.request.urlopen(url) as url:
+        data = json.loads(url.read().decode())
+    global whohasnamedaytoday
+    whohasnamedaytoday = (str)(data['nev1'])
+    for ch in ["ö","ó","ő"]:
+       if ch in whohasnamedaytoday:
+         whohasnamedaytoday=whohasnamedaytoday.replace( ch,"o")
+    for ch in ["Ö","Ó","Ő"]:
+       if ch in whohasnamedaytoday:
+         whohasnamedaytoday=whohasnamedaytoday.replace( ch,"O")
+    for ch in ["Ü","Ú","Ű"]:
+       if ch in whohasnamedaytoday:
+         whohasnamedaytoday=whohasnamedaytoday.replace( ch,"U")
+    for ch in ["ü","ú","ű"]:
+       if ch in whohasnamedaytoday:
+         whohasnamedaytoday=whohasnamedaytoday.replace( ch,"u")
+    for ch in ["[","]","'"]:
+       if ch in whohasnamedaytoday:
+         whohasnamedaytoday=whohasnamedaytoday.replace( ch,"")
+    whohasnamedaytoday = whohasnamedaytoday.replace("á", "a")
+    whohasnamedaytoday = whohasnamedaytoday.replace("Á", "A")
+    whohasnamedaytoday = whohasnamedaytoday.replace("É", "E")
+    whohasnamedaytoday = whohasnamedaytoday.replace("é", "e")
+    whohasnamedaytoday = whohasnamedaytoday.replace("í", "i")
+    whohasnamedaytoday = whohasnamedaytoday.replace("Í", "i")
+    whohasnamedaytoday = whohasnamedaytoday.replace("É", "E")
+    whohasnamedaytoday = whohasnamedaytoday.replace("é", "e")
+    print("Neki van nevnapja: ",whohasnamedaytoday)
+
+get_nameday(month,day)
+#nameday
+
+
 #weather
-API = 'itsasecret :P '
+API = 'itsasecret :P'
 
 def get_weather(api):
     url = 'http://api.wunderground.com/api/%s/conditions/lang:HU/q/Hu/Szigethalom.json' % (api)
@@ -84,7 +129,7 @@ mygirl=str(mygirl).split(" ")
 print(mygirl[0])
 #mygirl
 
-def hofok(n, block_orientation, rotate):
+def Hofok(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
     if ((now.hour + 1) < 9 or (now.hour + 1) > 19):
@@ -97,7 +142,7 @@ def hofok(n, block_orientation, rotate):
     time.sleep(1)
 
 
-def cpu(n, block_orientation, rotate):
+def Cpu(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
     if ((now.hour + 1) < 9 or  (now.hour + 1) > 19):
@@ -109,7 +154,7 @@ def cpu(n, block_orientation, rotate):
     show_message(device, msg, fill="white", font=proportional(CP437_FONT))
     time.sleep(1)
 
-def clock(n, block_orientation, rotate):
+def Clock(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
     if ((now.hour + 1 ) < 9 or (now.hour + 1) > 19):
@@ -121,7 +166,7 @@ def clock(n, block_orientation, rotate):
     show_message(device, msg, fill="white", font=proportional(CP437_FONT))
     time.sleep(1)
 
-def accu(n, block_orientation, rotate):
+def Wunder(n, block_orientation, rotate):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
     if ((now.hour + 1) < 9 or  (now.hour + 1) > 19):
@@ -149,6 +194,18 @@ def Girl(n, block_orientation, rotate):
     show_message(device, msg, fill="white", font=proportional(CP437_FONT))
     time.sleep(1)
 
+def Nameday(n, block_orientation, rotate):
+    serial = spi(port=0, device=0, gpio=noop())
+    device = max7219(serial, cascaded=8, block_orientation=-90 , rotate=rotate)
+    print("nameday")
+    if ((now.hour + 1 ) < 5 or (now.hour + 1) > 19):
+        device.contrast(1)
+        print("Low fényerő")
+    msg = "Mai nevnap: " + str(whohasnamedaytoday)
+    print(msg)
+    show_message(device, msg, fill="white", font=proportional(CP437_FONT))
+    time.sleep(1)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='matrix_demo arguments',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -164,16 +221,20 @@ if int(which) == 0:
     print("nope")
     exit()
 elif int(which) == 1:
-    accu(args.cascaded, args.block_orientation, 2)
-    hofok(args.cascaded, args.block_orientation, 2)
-    cpu(args.cascaded, args.block_orientation, 2)
-    clock(args.cascaded, args.block_orientation, 2)
+    Clock(args.cascaded, args.block_orientation, 2)
+    Wunder(args.cascaded, args.block_orientation, 2)
+    Hofok(args.cascaded, args.block_orientation, 2)
+    Cpu(args.cascaded, args.block_orientation, 2)
+    Nameday(args.cascaded, args.block_orientation, 2)
+    Clock(args.cascaded, args.block_orientation, 2)
 elif int(which) == 2:
-    hofok(args.cascaded, args.block_orientation, 2)
+    Hofok(args.cascaded, args.block_orientation, 2)
 elif int(which) == 3:
-    cpu(args.cascaded, args.block_orientation, 2)
+    Cpu(args.cascaded, args.block_orientation, 2)
 elif int(which) == 4:
-    clock(args.cascaded, args.block_orientation, 2)
+    Clock(args.cascaded, args.block_orientation, 2)
+elif int(which) == 5:
+    Nameday(args.cascaded, args.block_orientation, 2)
 elif int(which) == 69:
     Girl(args.cascaded, args.block_orientation, 2)
 print(which)
