@@ -102,7 +102,7 @@ def nevnap_kinyerese(month, day):
 ####
 
 # weather
-API = '7549c67e1f53d17d548536e355d7dea1'
+API = 'its a secret...'
 def idojaras_lekerese(api):
     url = 'http://api.openweathermap.org/data/2.5/weather?&q=Szigethalom,hu&lang=hu&units=metric&appid=%s' % (api)
     print(url)
